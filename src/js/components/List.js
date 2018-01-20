@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
-  return { articles: state.articles };
+  return { todos: state.todos };
 };
 
-const ConnectedList = ({ articles }) => (
+const ConnectedList = ({ todos }) => (
   <ul>
-    {articles.map(el => (
+    {todos.map(el => (
       <li key={el.id}>
         {el.title}
       </li>
@@ -19,7 +19,7 @@ const ConnectedList = ({ articles }) => (
 const List = connect(mapStateToProps)(ConnectedList);
 
 ConnectedList.propTypes = {
-    articles: PropTypes.array.isRequired
+    todos: PropTypes.array.isRequired
 };
 
 export default List;

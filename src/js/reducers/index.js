@@ -1,11 +1,11 @@
-import { ADD_ARTICLE } from "../constants/action-types";
+import { ADD_TODO } from "../constants/action-types";
 const initialState = {
-  articles: []
+  todos: []
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_ARTICLE:
-      return { ...state, articles: [...state.articles, action.payload] };
+    case ADD_TODO:
+      return { ...state, todos: [...state.todos, action.payload] };
     default:
       return state;
   }

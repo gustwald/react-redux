@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import uuidv1 from 'uuid';
-import { addArticle } from '../actions/index';
+import { addTodo } from '../actions/index';
 
 const mapDispatchToProps = dispatch => {
   return {
-    addArticle: article => dispatch(addArticle(article))
+    addTodo: todo => dispatch(addTodo(todo))
   };
 };
 
@@ -30,7 +30,7 @@ class ConnectedForm extends Component {
     event.preventDefault();
     const { title } = this.state;
     const id = uuidv1();
-    this.props.addArticle({ title, id });
+    this.props.addTodo({ title, id });
     this.setState({ title: '' });
   }
 
@@ -59,7 +59,7 @@ class ConnectedForm extends Component {
 const Form = connect(null, mapDispatchToProps)(ConnectedForm);
 
 ConnectedForm.propTypes = {
-    addArticle: PropTypes.func.isRequired
+  addTodo: PropTypes.func.isRequired
 };
 
 export default Form;
