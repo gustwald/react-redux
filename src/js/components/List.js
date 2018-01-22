@@ -6,10 +6,10 @@ const mapStateToProps = state => {
   return { todos: state.todos };
 };
 
-const ConnectedList = ({ todos }) => (
+const ConnectedList = ({ todos, onClick }) => (
   <ul>
     {todos.map(el => (
-      <li key={el.id}>
+      <li key={el.id} onClick={onClick}>
         {el.title}
       </li>
     ))}
