@@ -1,5 +1,14 @@
 import { ADD_TODO } from '../constants/action-types';
-import { DONE_TODO } from '../constants/action-types';
+import { TOGGLE_TODO } from '../constants/action-types';
 
-export const addTodo = todo => ({ type: ADD_TODO, payload: todo });
-export const doneTodo = todo => ({ type: DONE_TODO, payload: todo });
+let nextTodoId = 0
+
+export const addTodo = todo => ({ 
+    type: ADD_TODO, payload: todo, id: nextTodoId++, completed: false
+});
+
+export const toggleTodo = id => { 
+    return{
+    type: TOGGLE_TODO, id
+    }
+};
