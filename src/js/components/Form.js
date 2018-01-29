@@ -6,7 +6,7 @@ import { addTodo } from '../actions/index';
 
 const mapDispatchToProps = dispatch => {
   return {
-    addTodo: todo => dispatch(addTodo(todo))
+    addTodo: (id, todo) => dispatch(addTodo(id, todo))
   };
 };
 
@@ -28,8 +28,9 @@ class ConnectedForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const id = uuidv1();
 
-    this.props.addTodo(this.state.title);
+    this.props.addTodo(id, this.state.title);
     this.setState({ title: ''});
   }
 
@@ -40,6 +41,7 @@ class ConnectedForm extends Component {
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input
+            required
             type="text"
             className="form-control"
             id="title"

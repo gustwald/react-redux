@@ -1,7 +1,40 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { toggleTodo } from '../actions/index';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Comment from './Comment';
+import { connect } from "react-redux";
+import { toggleTodo, commentTodo } from "../actions/index";
+
+class ConnectedList extends Component {
+
+  propTypes: {
+    todos: PropTypes.array.isRequired
+  };
+
+  toggle(id) {
+    this.props.toggleTodo(id);
+  }
+
+  render() {
+    return (
+      <ul>
+        {this.props.todos.map(todo => (
+          <li
+            key={todo.id}
+            style={{ textDecoration: todo.completed ? "line-through" : "none" }}
+          >
+            {todo.payload}
+            <input onClick={() => this.toggle(todo.id)} type="checkbox" />
+            <ul>{todo.comments.map((comment, i) => (
+            <p key={i}>{comment}</p>
+            ))}
+            </ul>
+            <Comment commentTodo={this.props.commentTodo} todo={todo}/>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   console.log(state);
@@ -9,31 +42,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return{
-    toggleTodo: id => dispatch(toggleTodo(id))
+  return {
+    toggleTodo: id => dispatch(toggleTodo(id)),
+    commentTodo: (id, todo) => dispatch(commentTodo(id, todo))
   };
 };
 
-const ConnectedList = ({ todos, toggleTodo }) => {
-  const toggle = (id) => {
-    toggleTodo(id);
-  }
-
-  return (
-    <ul>
-      {todos.map(el => (
-        <li key={el.id} onClick={() => toggle(el.id)} style={{textDecoration: el.completed ? 'line-through' : 'none'}}>
-          {el.payload}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 const List = connect(mapStateToProps, mapDispatchToProps)(ConnectedList);
-
-ConnectedList.propTypes = {
-    todos: PropTypes.array.isRequired
-};
 
 export default List;
