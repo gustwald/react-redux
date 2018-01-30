@@ -22,13 +22,14 @@ class ConnectedList extends Component {
             key={todo.id}
             style={{ textDecoration: todo.completed ? "line-through" : "none" }}
           >
-            {todo.payload}
+            {todo.payload} {todo.date}
             <input onClick={() => this.toggle(todo.id)} type="checkbox" />
-            <ul>{todo.comments.map((comment, i) => (
-            <p key={i}>{comment}</p>
+            <ul>
+            {todo.comments.map((comment, i) => (
+            <li key={i}>{comment}</li>
             ))}
+            <Comment commentTodo={this.props.commentTodo} todo={todo} />
             </ul>
-            <Comment commentTodo={this.props.commentTodo} todo={todo}/>
           </li>
         ))}
       </ul>

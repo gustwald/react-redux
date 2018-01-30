@@ -4,7 +4,7 @@ import { COMMENT_TODO } from '../constants/action-types';
 
 export const addTodo = (id, todo) => { 
     return{
-    type: ADD_TODO, payload: todo, id: id, completed: false, comments: []
+    type: ADD_TODO, payload: todo, id: id, completed: false, comments: [], date: null
     }
 };
 

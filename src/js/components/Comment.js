@@ -32,7 +32,7 @@ class Comments extends Component {
     return (
       <form onSubmit={e => this.handleSubmit(e, this.props.todo)}>
         <div className="form-group">
-          <textarea value={this.state.comment} onChange={this.handleChange} />
+          <input required value={this.state.comment} onChange={this.handleChange} />
         </div>
         <button type="submit" className="btn btn-danger btn-sm">
           kommentera

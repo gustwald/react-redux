@@ -1,5 +1,6 @@
 import { ADD_TODO, COMMENT_TODO } from "../constants/action-types";
 import { TOGGLE_TODO } from "../constants/action-types";
+import todaysDate from '../utils/date';
 
 const todoReducer = (state = [], action) => {
 
@@ -11,7 +12,8 @@ const todoReducer = (state = [], action) => {
           id: action.id,
           payload: action.payload,
           completed: action.completed,
-          comments: action.comments
+          comments: action.comments,
+          date: todaysDate
         }
       ];
     case TOGGLE_TODO:
